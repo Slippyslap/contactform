@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<title>Gallery TEST Construction</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-win8.css">
+	<style>
+		.mySlides {display:none;}
+	</style>
+<body class="w3-win8-steel">
+
+	<header class="w3-container ">
+		<img src="testlogo250.png" alt="logo" class="w3-image" style="height:175px">
+	
+		<div class="w3-bar w3-border w3-light-grey w3-center">
+			<a href="test_about.html" style="width:25%" class="w3-bar-item w3-button w3-mobile">About Us</a></li>
+			<a href="test_services.html" style="width:25%" class="w3-bar-item w3-button w3-mobile">Services</a></li>
+			<a href="https://slippyslap.github.io/contactform/" style="width:25%" class="w3-bar-item w3-button w3-mobile">Contact Us</a></li>
+			<a href="test_gallery.html" style="width:25%" class="w3-bar-item w3-button w3-mobile">Gallery</a></li>
+
+		</div>
+	</header>
+<div class="w3-container">
+	<h1>Portable Workbench</h1>
+</div>
+
+<div class="w3-content w3-display-container">
+  <img class="mySlides1" src="table1.jpg" style="width:100%">
+  <img class="mySlides1" src="table2.jpg" style="width:100%">
+  <img class="mySlides1" src="table3.jpg" style="width:100%">
+  <img class="mySlides1" src="table4.jpg" style="width:100%">
+  <img class="mySlides1" src="table5.jpg" style="width:100%">
+  <img class="mySlides1" src="table6.jpg" style="width:100%">
+
+  <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1, 0)">&#10094;</button>
+  <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1, 0)">&#10095;</button>
+</div>
+
+<div class="w3-container">
+	<h1>Miscellaneous Projects</h1>
+</div>
+
+<div class="w3-content w3-display-container">
+  <img class="mySlides2" src="pooldeck.jpg" style="width:100%">
+  <img class="mySlides2" src="planter.jpg" style="width:100%">
+  <img class="mySlides2" src="office.jpg" style="width:100%">
+
+  <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1, 1)">&#10094;</button>
+  <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1, 1)">&#10095;</button>
+</div>
+
+<script>
+var slideIndex = [1,1];
+var slideId = ["mySlides1", "mySlides2"]
+showDivs(1, 0);
+showDivs(1, 1);
+
+function plusDivs(n, no) {
+  showDivs(slideIndex[no] += n, no);
+}
+
+function showDivs(n, no) {
+  var i;
+  var x = document.getElementsByClassName(slideId[no]);
+  if (n > x.length) {slideIndex[no] = 1}
+  if (n < 1) {slideIndex[no] = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  x[slideIndex[no]-1].style.display = "block";  
+}
+</script>
+
+</body>
+</html>
