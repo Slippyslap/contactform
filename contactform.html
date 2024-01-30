@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>  
+<html>
+<head>
+<style>
+.error {color: #FF0000;}
+</style>
+</head>
+<body>  
+
+<?php
+// define variables and set to empty values
+$nameErr = $addressErr = $emailErr = $methodErr = "";
+$name = $address = $email = $description = $method = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (empty($_POST["name"])) {
+    $nameErr = "Name is required";
+  } else {
+    $name = test_input($_POST["name"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
+      $nameErr = "Only letters and white space allowed";
+    }
+  }
+  
+  if (empty($_POST["address"])) {
+    $addressErr = "Address is required";
+  } else {
+    $address = test_input($_POST["address"]);
+    // check if address only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z-' ]*$/", $address)) {
+      $addressErr = "Only street address and city needed.";
+    }
+  }
+    
+  if (empty($_POST["email"])) {
+    $emailErr = "Email is required";
+  } else {
+    $email = test_input($_POST["email"]);
+    // check if e-mail address is well-formed
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $emailErr = "Invalid email format";
+    }
+  }
+
+  if (empty($_POST["method"])) {
+    $methodErr = "Contact Method is required";
+  } else {
+    $method = test_input($_POST["method"]);
+  }
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
+
+<h2>PHP Form Validation Example</h2>
+<p><span class="error">* required field</span></p>
+<form method="post" action="https://mail.yahoo.com/d/folders/1?.src=ym">  
+  Name: <input type="text" name="name" >
+  <span class="error">* <?php echo $nameErr;?></span>
+  <br><br>
+  Address: <input type="text" name="address" >
+  <span class="error">* <?php echo $addressErr;?></span>
+  <br><br>
+  E-mail: <input type="text" name="email" >
+  <span class="error">* <?php echo $emailErr;?></span>
+  <br><br>
+  Brief Description Of Project: 
+  <br><br><textarea name="descrip" rows="5" cols="40"></textarea>
+  <br><br>
+  Preferred Contact Method:
+  <input type="radio" name="method" <?php if (isset($method) && $method=="phone") echo "checked";?> Phone
+  <input type="radio" name="method" <?php if (isset($method) && $method=="email") echo "checked";?> Email
+  <span class="error">* <?php echo $methodErr;?></span>
+  <br><br>
+  <input type="submit" name="submit" value="Submit">  
+</form>
+
+
+
+</body>
+</html>
